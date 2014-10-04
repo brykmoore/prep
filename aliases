@@ -7,6 +7,7 @@ alias gljp=./get_latest_from_jp
 alias gs='rake growl:start'
 alias push=./push
 alias rr=./rr
+alias rf=./run_first
 alias smc=./save_my_changes
 alias sne=./start_new_excercise
 alias sr='rake specs:run'
