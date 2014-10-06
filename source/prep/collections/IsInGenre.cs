@@ -11,9 +11,9 @@ namespace prep.collections
       this.genre = genre;
     }
 
-    public bool matches(Movie movie)
+    public bool matches(Movie item)
     {
-      return movie.genre == genre;
+      return item.genre == genre;
     } 
   }
 }

@@ -11,7 +11,7 @@ namespace prep.utility
         yield return item;
     }
 
-    static IEnumerable<T> all_items_matching<T>(this IEnumerable<T> items, Condition<T> criteria)
+    public static IEnumerable<T> all_items_matching<T>(this IEnumerable<T> items, Condition<T> criteria)
     {
       foreach (var item in items)
         if (criteria(item)) yield return item;

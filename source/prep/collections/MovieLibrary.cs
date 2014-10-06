@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using prep.matching;
 using prep.utility;
 
 namespace prep.collections
@@ -30,11 +31,9 @@ namespace prep.collections
       return movies.Contains(movie);
     }
 
-    public delegate bool MovieCondition(Movie movie);
-
     public IEnumerable<Movie> filter(Condition<Movie> criteria)
     {
-      return movies.all_items_matching(criteria); 
+      return movies.all_items_matching(new ConditionalMatch<Movie>(criteria)); 
     }
 
     public IEnumerable<Movie> all_movies_published_by_pixar()

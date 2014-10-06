@@ -2,6 +2,6 @@
 {
   public interface IMatchA<in ItemToMatch>
   {
-    bool matches(ItemToMatch movie);
+    bool matches(ItemToMatch item);
   }
 }

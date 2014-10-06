@@ -11,9 +11,9 @@ namespace prep.collections
       this.studio = studio;
     }
 
-    public bool matches(Movie movie)
+    public bool matches(Movie item)
     {
-      return movie.production_studio == studio;
+      return item.production_studio == studio;
     }
   }
 }
