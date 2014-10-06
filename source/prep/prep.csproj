@@ -69,6 +69,7 @@
     <Compile Include="matching\ConditionalMatch.cs" />
     <Compile Include="matching\IMatchA.cs" />
     <Compile Include="matching\MatchExtensions.cs" />
+    <Compile Include="matching\NeverMatches.cs" />
     <Compile Include="matching\OrMatch.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />

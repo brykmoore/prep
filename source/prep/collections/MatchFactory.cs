@@ -1,4 +1,5 @@
-﻿using prep.matching;
+﻿using System.Collections.Generic;
+using prep.matching;
 using prep.utility;
 
 namespace prep.collections
@@ -12,12 +13,19 @@ namespace prep.collections
       this.accessor = accessor;
     }
 
-    public IMatchA<ItemToMatch> equal_to(PropertyType value)
+    public IMatchA<ItemToMatch> equal_to(params PropertyType[] values)
     {
-      return new ConditionalMatch<ItemToMatch>(x => accessor(x).Equals(value));
+      return new ConditionalMatch<ItemToMatch>(x =>
+      {
+        var items = new List<PropertyType>(values);
+
+        var value_to_find = accessor(x);
+
+        return items.Contains(value_to_find);
+      });
     }
 
-    public IMatchA<ItemToMatch> equal_to_any(params PropertyType[] values)
+    public IMatchA<ItemToMatch> not_equal_to(PropertyType value)
     {
       throw new System.NotImplementedException();
     }
