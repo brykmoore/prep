@@ -1,4 +1,5 @@
 using System;
+using prep.utility;
 
 namespace prep.collections
 {
@@ -25,6 +26,21 @@ namespace prep.collections
     public override int GetHashCode()
     {
       return title.GetHashCode();
+    }
+
+    public static Condition<Movie> in_genre(Genre genre)
+    {
+      return x => x.genre == genre;
+    }
+
+    public static Condition<Movie> published_by(ProductionStudio studio)
+    {
+      return x => x.production_studio == studio;
+    }
+
+    public static Condition<Movie> published_by_pixar_or_disney()
+    {
+      throw new NotImplementedException();
     }
   }
 }
