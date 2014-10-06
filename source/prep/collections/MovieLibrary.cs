@@ -32,40 +32,45 @@ namespace prep.collections
 
     public delegate bool MovieCondition(Movie movie);
 
+    public IEnumerable<Movie> filter(Condition<Movie> criteria)
+    {
+      return movies.all_items_matching(criteria); 
+    }
+
     public IEnumerable<Movie> all_movies_published_by_pixar()
     {
-      return movies.all_items_matching(x => x.production_studio == ProductionStudio.Pixar);
+      return filter(x => x.production_studio == ProductionStudio.Pixar);
     }
 
     public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
     {
-      return movies.all_items_matching(x => x.production_studio.Equals(ProductionStudio.Pixar) ||
+      return filter(x => x.production_studio.Equals(ProductionStudio.Pixar) ||
         x.production_studio.Equals(ProductionStudio.Disney));
     }
 
     public IEnumerable<Movie> all_movies_not_published_by_pixar()
     {
-      return movies.all_items_matching(x => !x.production_studio.Equals(ProductionStudio.Pixar));
+      return filter(x => !x.production_studio.Equals(ProductionStudio.Pixar));
     }
 
     public IEnumerable<Movie> all_movies_published_after(int year)
     {
-      return movies.all_items_matching(x => x.date_published.Year > (year));
+      return filter(x => x.date_published.Year > (year));
     }
 
     public IEnumerable<Movie> all_movies_published_between_years(int starting_year, int ending_year)
     {
-        return movies.all_items_matching(movie => movie.date_published.Year >= starting_year && movie.date_published.Year <= ending_year);
+        return filter(movie => movie.date_published.Year >= starting_year && movie.date_published.Year <= ending_year);
     }
 
     public IEnumerable<Movie> all_kid_movies()
     {
-      return movies.all_items_matching(movie => movie.genre.Equals(Genre.kids));
+      return filter(movie => movie.genre.Equals(Genre.kids));
     }
 
     public IEnumerable<Movie> all_action_movies()
     {
-      return movies.all_items_matching(movie =>movie.genre.Equals(Genre.action));
+      return filter(movie =>movie.genre.Equals(Genre.action));
     }
 
     public IEnumerable<Movie> sort_all_movies_by_title_descending()

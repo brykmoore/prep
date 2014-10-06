@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using prep.matching;
 
 namespace prep.utility
 {
@@ -10,10 +11,15 @@ namespace prep.utility
         yield return item;
     }
 
-    public static IEnumerable<T> all_items_matching<T>(this IEnumerable<T> items, Condition<T> criteria)
+    static IEnumerable<T> all_items_matching<T>(this IEnumerable<T> items, Condition<T> criteria)
     {
       foreach (var item in items)
         if (criteria(item)) yield return item;
+    }
+
+    public static IEnumerable<T> all_items_matching<T>(this IEnumerable<T> items, IMatchA<T> criteria)
+    {
+      return items.all_items_matching(criteria.matches);
     }
   }
 }

@@ -1,5 +1,5 @@
 using System;
-using prep.utility;
+using prep.matching;
 
 namespace prep.collections
 {
@@ -28,19 +28,20 @@ namespace prep.collections
       return title.GetHashCode();
     }
 
-    public static Condition<Movie> in_genre(Genre genre)
+    public static IMatchA<Movie> in_genre(Genre genre)
     {
-      return x => x.genre == genre;
+      return new IsInGenre(genre);
     }
 
-    public static Condition<Movie> published_by(ProductionStudio studio)
+    public static IMatchA<Movie> published_by(ProductionStudio studio)
     {
-      return x => x.production_studio == studio;
+      return new IsPublishedBy(studio);
     }
 
-    public static Condition<Movie> published_by_pixar_or_disney()
+    public static IMatchA<Movie> published_by_pixar_or_disney()
     {
-      throw new NotImplementedException();
+      return published_by(ProductionStudio.Pixar)
+        .or(published_by(ProductionStudio.Disney));
     }
   }
 }
