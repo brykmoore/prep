@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+using prep.utility;
 
 namespace prep.collections
 {
@@ -17,106 +15,75 @@ namespace prep.collections
 
     public IEnumerable<Movie> all_movies()
     {
-        foreach (var movie in movies)
-        {
-            yield return movie;
-        }
+      return movies.one_at_a_time();
     }
 
     public void add(Movie movie)
     {
-        var matchingTitle = false;
+      if (already_contains(movie)) return;
 
-        if (!movies.Contains(movie))
-        {
-            foreach (var m in movies)
-            {
-                if (m.title == movie.title)
-                {
-                    matchingTitle = true;
-                }
-            }
-            if (!matchingTitle)
-                movies.Add(movie);
-        }
-
+      movies.Add(movie);
     }
-    
+
+    bool already_contains(Movie movie)
+    {
+      return movies.Contains(movie);
+    }
+
+    public delegate bool MovieCondition(Movie movie);
+
+    public IEnumerable<Movie> all_movies_matching(MovieCondition criteria)
+    {
+      return movies.all_items_matching(criteria);
+    }
+
+
     public IEnumerable<Movie> all_movies_published_by_pixar()
     {
-        foreach (var movie in movies)
-        {
-            if (movie.production_studio.Equals(ProductionStudio.Pixar))
-            {
-                yield return movie;
-            }
-        }
+      return all_movies_matching(x => x.production_studio == ProductionStudio.Pixar);
     }
 
     public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
     {
-        foreach (var movie in movies)
-        {
-            if (movie.production_studio.Equals(ProductionStudio.Pixar) || movie.production_studio.Equals(ProductionStudio.Disney))
-            {
-                yield return movie;
-            }
-        }
+      return all_movies_matching(x => x.production_studio.Equals(ProductionStudio.Pixar) ||
+        x.production_studio.Equals(ProductionStudio.Disney));
     }
 
     public IEnumerable<Movie> all_movies_not_published_by_pixar()
     {
-        foreach (var movie in movies)
-        {
-            if (!movie.production_studio.Equals(ProductionStudio.Pixar))
-            {
-                yield return movie;
-            }
-        }
+      return all_movies_matching(x => !x.production_studio.Equals(ProductionStudio.Pixar));
     }
 
     public IEnumerable<Movie> all_movies_published_after(int year)
     {
-        foreach (var movie in movies)
-        {
-            if (movie.date_published.Year > (year))
-            {
-                yield return movie;
-            }
-        }
+      return all_movies_matching(x => x.date_published.Year > (year));
     }
 
     public IEnumerable<Movie> all_movies_published_between_years(int startingYear, int endingYear)
     {
-        foreach (var movie in movies)
-        {
-            if (movie.date_published.Year >= startingYear && movie.date_published.Year <= endingYear)
-            {
-                yield return movie;
-            }
-        }
+        return all_movies_matching(movie => movie.date_published.Year >= startingYear && movie.date_published.Year <= endingYear);
     }
 
     public IEnumerable<Movie> all_kid_movies()
     {
-        foreach (var movie in movies)
+      foreach (var movie in movies)
+      {
+        if (movie.genre.Equals(Genre.kids))
         {
-            if (movie.genre.Equals(Genre.kids))
-            {
-                yield return movie;
-            }
+          yield return movie;
         }
+      }
     }
 
     public IEnumerable<Movie> all_action_movies()
     {
-        foreach (var movie in movies)
+      foreach (var movie in movies)
+      {
+        if (movie.genre.Equals(Genre.action))
         {
-            if (movie.genre.Equals(Genre.action))
-            {
-                yield return movie;
-            }
+          yield return movie;
         }
+      }
     }
 
     public IEnumerable<Movie> sort_all_movies_by_title_descending()
