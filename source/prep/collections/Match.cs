@@ -1,12 +1,13 @@
-﻿using System;
+﻿using prep.utility;
 
 namespace prep.collections
 {
   public class Match<ItemToMatch>
   {
-    public static void with(Func<object, object> func)
+    public static MatchFactory<ItemToMatch, PropertyType> with<PropertyType>(
+      IGetTheValueOfAProperty<ItemToMatch, PropertyType> accessor)
     {
-      throw new NotImplementedException();
+      return new MatchFactory<ItemToMatch, PropertyType>(accessor); 
     }
   }
 }

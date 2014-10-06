@@ -42,6 +42,6 @@ namespace prep.collections
     {
       return published_by(ProductionStudio.Pixar)
         .or(published_by(ProductionStudio.Disney));
-    }
+    } 
   }
 }
