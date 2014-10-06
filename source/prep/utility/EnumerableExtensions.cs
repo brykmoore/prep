@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
-using prep.collections;
 using prep.matching;
 
 namespace prep.utility
@@ -25,14 +23,9 @@ namespace prep.utility
       return items.all_items_matching(criteria.matches);
     }
 
-    public static Match<T> equal_to<T>(this Match<T> items, IMatchA<T> criteria)
-    {
-        return all_items_matching(items, criteria);
-    }
     public static DateTime Tomorrow
     {
-        get { return DateTime.Now.AddDays(1); }
+      get { return DateTime.Now.AddDays(1); }
     }
-
   }
 }

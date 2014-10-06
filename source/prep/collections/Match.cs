@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using prep.utility;
+﻿using prep.utility;
 
 namespace prep.collections
 {
   public class Match<ItemToMatch>
   {
-
-      public static void with(ProductionStudioCondition<Movie> condition)
+    public static MatchFactory<ItemToMatch, PropertyType> with<PropertyType>(
+      IGetTheValueOfAProperty<ItemToMatch, PropertyType> accessor)
     {
-      throw new NotImplementedException();
+      return new MatchFactory<ItemToMatch, PropertyType>(accessor); 
     }
   }
 }
