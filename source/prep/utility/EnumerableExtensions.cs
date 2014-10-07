@@ -26,7 +26,7 @@ namespace prep.utility
     public static FilteringExtensionPoint<ItemToFilter, PropertyType> where<ItemToFilter, PropertyType>(this IEnumerable<ItemToFilter> items,
       IGetTheValueOfAProperty<ItemToFilter, PropertyType> accessor)
     {
-      throw new NotImplementedException(); 
+      return new FilteringExtensionPoint<ItemToFilter, PropertyType>(items, accessor);
     }
   }
 }
