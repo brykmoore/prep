@@ -12,22 +12,26 @@ namespace prep.collections
     public ComparableMatchFactory(IGetTheValueOfAProperty<ItemToMatch, PropertyType> accessor, ICreateMatchers<ItemToMatch, PropertyType> original_factory)
     {
       this.accessor = accessor;
-      this.original_factory = original_factory;
     }
 
     public IMatchA<ItemToMatch> greater_than(PropertyType value)
     {
-      return new ConditionalMatch<ItemToMatch>(x => accessor(x).CompareTo(value) > 0);
+        return return_conditional_match(x => accessor(x).CompareTo(value) > 0);
     }
 
     public IMatchA<ItemToMatch> between(PropertyType start, PropertyType end)
     {
-      return new ConditionalMatch<ItemToMatch>(x =>
-      {
-        var value = accessor(x);
-        return value.CompareTo(start) >= 0 && value.CompareTo(end) <= 0;
-      });
+        return return_conditional_match(x =>
+        {
+            var value = accessor(x);
+            return value.CompareTo(start) >= 0 && value.CompareTo(end) <= 0;
+        });
     }
+
+    public ConditionalMatch<ItemToMatch> return_conditional_match(Condition<ItemToMatch> condition)
+    {
+        return new ConditionalMatch<ItemToMatch>(condition);
+    } 
 
     public IMatchA<ItemToMatch> equal_to(params PropertyType[] values)
     {
