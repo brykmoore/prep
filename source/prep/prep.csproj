@@ -62,7 +62,6 @@
     <Compile Include="collections\MovieLibrary.cs" />
     <Compile Include="collections\ProductionStudio.cs" />
     <Compile Include="collections\ReadOnlySet.cs" />
-    <Compile Include="comparer\Compare.cs" />
     <Compile Include="matching\AttributeMatch.cs" />
     <Compile Include="matching\Between.cs" />
     <Compile Include="matching\ConditionalMatch.cs" />
@@ -80,6 +79,7 @@
     <Compile Include="matching\NeverMatches.cs" />
     <Compile Include="matching\OrMatch.cs" />
     <Compile Include="ranges\IContainValues.cs" />
+    <Compile Include="sorting\Compare.cs" />
     <Compile Include="sorting\SortingExtensions.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
@@ -102,6 +102,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="comparer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

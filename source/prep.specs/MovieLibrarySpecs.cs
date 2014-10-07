@@ -52,7 +52,6 @@ using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
 using prep.collections;
-using prep.comparer;
 using prep.matching;
 using prep.sorting;
 using prep.specs.utility;
@@ -262,8 +261,7 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
-          //var Compare<Movie> = new Compare<Movie>();
-        IComparer<Movie> comparer = Compare<Movie>.by_descending(x => x.title);
+        var comparer = Compare<Movie>.by_descending(x => x.title);
 
         var results = sut.all_movies().sort_using(comparer);
 
@@ -274,7 +272,9 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_ascending = () =>
       {
-        var results = sut.sort_all_movies_by_title_ascending();
+        var comparer = Compare<Movie>.by(x => x.title);
+
+        var results = sut.all_movies().sort_using(comparer);
 
         results.ShouldContainOnlyInOrder(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom,
           pirates_of_the_carribean, shrek, 
@@ -283,7 +283,9 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_date_published_descending = () =>
       {
-        var results = sut.sort_all_movies_by_date_published_descending();
+        var comparer = Compare<Movie>.by_descending(x => x.date_published);
+
+        var results = sut.all_movies().sort_using(comparer);
 
         results.ShouldContainOnlyInOrder(theres_something_about_mary, shrek, yours_mine_and_ours, cars,
           pirates_of_the_carribean, a_bugs_life,
@@ -292,7 +294,9 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_date_published_ascending = () =>
       {
-        var results = sut.sort_all_movies_by_date_published_ascending();
+        var comparer = Compare<Movie>.by(x => x.date_published);
+
+        var results = sut.all_movies().sort_using(comparer);
 
         results.ShouldContainOnlyInOrder(indiana_jones_and_the_temple_of_doom, a_bugs_life,
           pirates_of_the_carribean, cars, yours_mine_and_ours, shrek,
