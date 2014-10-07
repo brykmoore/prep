@@ -79,6 +79,7 @@
     <Compile Include="matching\NeverMatches.cs" />
     <Compile Include="matching\OrMatch.cs" />
     <Compile Include="ranges\IContainValues.cs" />
+    <Compile Include="sorting\SortingExtensions.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
     <Compile Include="utility\FilteringExtensionPoint.cs" />
