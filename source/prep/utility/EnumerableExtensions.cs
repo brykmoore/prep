@@ -23,9 +23,10 @@ namespace prep.utility
       return items.all_items_matching(criteria.matches);
     }
 
-    public static DateTime Tomorrow
+    public static FilteringExtensionPoint<ItemToFilter, PropertyType> where<ItemToFilter, PropertyType>(this IEnumerable<ItemToFilter> items,
+      IGetTheValueOfAProperty<ItemToFilter, PropertyType> accessor)
     {
-      get { return DateTime.Now.AddDays(1); }
+      throw new NotImplementedException(); 
     }
   }
 }

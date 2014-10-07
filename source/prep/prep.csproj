@@ -79,6 +79,7 @@
     <Compile Include="matching\OrMatch.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
+    <Compile Include="utility\FilteringExtensionPoint.cs" />
     <Compile Include="utility\IGetTheValueOfAProperty.cs" />
   </ItemGroup>
   <ItemGroup>
