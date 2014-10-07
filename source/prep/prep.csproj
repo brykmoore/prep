@@ -79,7 +79,11 @@
     <Compile Include="matching\NeverMatches.cs" />
     <Compile Include="matching\OrMatch.cs" />
     <Compile Include="ranges\IContainValues.cs" />
+    <Compile Include="sorting\AscendingAttributeComparer.cs" />
+    <Compile Include="sorting\CombinedComparer.cs" />
     <Compile Include="sorting\Compare.cs" />
+    <Compile Include="sorting\ComparerExtensions.cs" />
+    <Compile Include="sorting\ReverseComparer.cs" />
     <Compile Include="sorting\SortingExtensions.cs" />
     <Compile Include="utility\Condition.cs" />
     <Compile Include="utility\EnumerableExtensions.cs" />
