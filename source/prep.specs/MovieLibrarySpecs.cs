@@ -52,6 +52,7 @@ using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 using Machine.Specifications;
 using prep.collections;
+using prep.comparer;
 using prep.matching;
 using prep.sorting;
 using prep.specs.utility;
@@ -261,6 +262,7 @@ namespace prep.specs
 
       It should_be_able_to_sort_all_movies_by_title_descending = () =>
       {
+          //var Compare<Movie> = new Compare<Movie>();
         IComparer<Movie> comparer = Compare<Movie>.by_descending(x => x.title);
 
         var results = sut.all_movies().sort_using(comparer);
