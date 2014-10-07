@@ -83,6 +83,7 @@
     <Compile Include="sorting\CombinedComparer.cs" />
     <Compile Include="sorting\Compare.cs" />
     <Compile Include="sorting\ComparerExtensions.cs" />
+    <Compile Include="sorting\AscendingOrderComparer.cs" />
     <Compile Include="sorting\ReverseComparer.cs" />
     <Compile Include="sorting\SortingExtensions.cs" />
     <Compile Include="utility\Condition.cs" />

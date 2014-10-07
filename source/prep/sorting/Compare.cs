@@ -22,7 +22,7 @@ namespace prep.sorting
     public static IComparer<ItemToCompare> by<PropertyType>(IGetTheValueOfAProperty<ItemToCompare, PropertyType> accessor,
       params PropertyType[] order)
     {
-      throw new NotImplementedException();
+        return new AscendingOrderComparer<ItemToCompare, PropertyType>(order, accessor);
     }
   }
 }
